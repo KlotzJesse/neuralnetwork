@@ -6,20 +6,20 @@ import de.jklotz.neuralnetwork.network.Synapse;
 public class Dropout extends AbstractRegularization {
 
     public Dropout() {
-        this(0.2);
+        this(0.2f);
     }
 
-    public Dropout(double lambda) {
+    public Dropout(float lambda) {
         this.lambda = lambda;
     }
 
     @Override
-    public double compute(Synapse synapse) {
-        return 0.0;
+    public float compute(Synapse synapse) {
+        return 0;
     }
 
     @Override
-    public double compute(Neuron neuron) {
-        return Math.random() < lambda ? -1.0 : 1.0;
+    public float compute(Neuron neuron) {
+        return Math.random() < lambda ? -1.0f : 1.0f;
     }
 }

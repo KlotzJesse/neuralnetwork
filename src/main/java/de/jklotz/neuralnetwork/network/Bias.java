@@ -5,26 +5,26 @@ import java.util.Random;
 
 public class Bias implements Serializable {
 
-    public double value;
+    public float value;
 
-    public double weight;
+    public float weight;
 
     private static final Random RND = new Random();
 
     public Bias() {
-        this(1.0);
+        this(1.0f);
     }
 
-    public Bias(double value) {
-        this(value, RND.nextDouble() * 2.0 - 1.0);
+    public Bias(float value) {
+        this(value, RND.nextFloat() * 2.0f - 1.0f);
     }
 
-    public Bias(double value, double weight) {
+    public Bias(float value, float weight) {
         this.value = value;
         this.weight = weight;
     }
 
-    public double compute() {
+    public float compute() {
         return value * weight;
     }
 }

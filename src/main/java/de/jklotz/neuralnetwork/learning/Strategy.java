@@ -9,8 +9,8 @@ public abstract class Strategy implements LearningStrategy {
 
     public NeuronalNetwork network;
 
-    public double momentum;
-    public double learningRate;
+    public float momentum;
+    public float learningRate;
 
     public Regularization regularization = new Dropout();
 

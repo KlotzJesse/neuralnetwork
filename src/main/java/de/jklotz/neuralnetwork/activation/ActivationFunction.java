@@ -16,9 +16,9 @@ public interface ActivationFunction extends Serializable {
     Softmax SOFTMAX = new Softmax();
 
 
-    double activate(Neuron neuron);
+    float activate(Neuron neuron);
 
-    double derivative(Neuron neuron);
+    float derivative(Neuron neuron);
 
     default boolean isStochasticDerivative() {
         return false;

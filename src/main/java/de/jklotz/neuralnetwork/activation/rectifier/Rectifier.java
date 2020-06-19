@@ -6,15 +6,15 @@ import de.jklotz.neuralnetwork.network.Neuron;
 
 public class Rectifier implements ActivationFunction {
 
-    protected double leakiness = 0.0;
+    protected float leakiness = 0;
 
     @Override
-    public double activate(Neuron neuron) {
+    public float activate(Neuron neuron) {
         return neuron.getPreActivationValue() < 0 ? (leakiness * neuron.getPreActivationValue()) : neuron.getPreActivationValue();
     }
 
     @Override
-    public double derivative(Neuron neuron) {
-        return neuron.getPreActivationValue() < 0 ? leakiness : 1.0;
+    public float derivative(Neuron neuron) {
+        return neuron.getPreActivationValue() < 0 ? leakiness : 1.0f;
     }
 }

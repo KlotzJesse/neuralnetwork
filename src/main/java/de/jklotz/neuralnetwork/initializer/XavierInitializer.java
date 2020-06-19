@@ -24,10 +24,10 @@ public class XavierInitializer implements Initializer {
         int outputNeurons = layers.get(layers.size() - 1).size();
 
 
-        double nAvg = (inputNeurons + outputNeurons) / 2.0;
-        double variance = 1.0 / nAvg;
+        float nAvg = (inputNeurons + outputNeurons) / 2.0f;
+        float variance = 1.0f / nAvg;
 
-        double standardDeviation = Math.sqrt(variance);
+        float standardDeviation = (float) Math.sqrt(variance);
 
 
         for (Layer layer : layers) {
@@ -38,21 +38,21 @@ public class XavierInitializer implements Initializer {
                     bias.value = randomBias();
                     bias.weight = xavierWeight(standardDeviation);
                 }
-                neuron.setValue(0.0);
+                neuron.setValue(0);
                 for (Synapse outputConnection : neuron.outputConnections) {
                     outputConnection.weight = xavierWeight(standardDeviation);
-                    outputConnection.change = 0.0;
+                    outputConnection.change = 0;
                 }
             }
         }
     }
 
-    private double xavierWeight(double standardDeviation) {
-        return rnd.nextGaussian() * standardDeviation;
+    private float xavierWeight(float standardDeviation) {
+        return (float) (rnd.nextGaussian() * standardDeviation);
     }
 
-    private double randomBias() {
-        return rnd.nextBoolean() ? -1.0 : 1.0;
+    private float randomBias() {
+        return rnd.nextBoolean() ? -1.0f : 1.0f;
     }
 }
 

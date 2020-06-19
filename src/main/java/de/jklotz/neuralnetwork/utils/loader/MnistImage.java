@@ -8,11 +8,11 @@ public abstract class MnistImage {
 
     protected int label;
 
-    protected double[] data;
+    protected float[] data;
 
     public MnistImage(int label, byte[] data) {
         this.label = label;
-        this.data = new double[data.length];
+        this.data = new float[data.length];
         convert(data);
     }
 
@@ -22,7 +22,7 @@ public abstract class MnistImage {
         return label;
     }
 
-    public double[] getData() {
+    public float[] getData() {
         return data;
     }
 }

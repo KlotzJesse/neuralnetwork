@@ -5,13 +5,13 @@ import de.jklotz.neuralnetwork.network.Neuron;
 public class Sigmoid implements ActivationFunction {
 
     @Override
-    public double activate(Neuron neuron) {
-        return 1.0 / (1.0 + Math.exp(-neuron.getPreActivationValue()));
+    public float activate(Neuron neuron) {
+        return (float) (1.0f / (1.0f + Math.exp(-neuron.getPreActivationValue())));
     }
 
     @Override
-    public double derivative(Neuron neuron) {
-        return neuron.getValue() * (1.0 - neuron.getValue());
+    public float derivative(Neuron neuron) {
+        return neuron.getValue() * (1.0f - neuron.getValue());
     }
 
     @Override

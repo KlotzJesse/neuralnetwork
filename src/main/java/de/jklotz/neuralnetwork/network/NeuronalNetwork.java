@@ -7,7 +7,7 @@ import de.jklotz.neuralnetwork.normalization.Normalization;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
- 
+
 public class NeuronalNetwork implements Serializable {
 
     public final List<Layer> layers;
@@ -36,25 +36,25 @@ public class NeuronalNetwork implements Serializable {
 
     }
 
-    public double[] output() {
+    public float[] output() {
         Layer outputLayer = this.layers.get(layers.size() - 1);
-        double[] result = new double[outputLayer.size()];
+        float[] result = new float[outputLayer.size()];
         for (int i = 0; i < outputLayer.size(); i++) {
             result[i] = outputLayer.get(i).getValue();
         }
         return result;
     }
 
-    public double[] input() {
+    public float[] input() {
         Layer inputLayer = this.layers.get(0);
-        double[] result = new double[inputLayer.size()];
+        float[] result = new float[inputLayer.size()];
         for (int i = 0; i < inputLayer.size(); i++) {
             result[i] = inputLayer.get(i).getValue();
         }
         return result;
     }
 
-    public void input(double... inputValues) {
+    public void input(float... inputValues) {
         Layer inputLayer = this.layers.get(0);
         if (inputValues.length != inputLayer.size()) {
             throw new IllegalArgumentException("Number of inputs does not match number of input neurons");
@@ -81,17 +81,17 @@ public class NeuronalNetwork implements Serializable {
     public void fireOutput() {
         Layer layer = this.layers.get(this.layers.size() - 1);
 
-        layer.forEach(Neuron::preCompute);
+        layer.forEach(neuron -> neuron.preCompute(false));
 
         LayerActivationFunction act = (LayerActivationFunction) layer.activationFunction;
         act.initialize(layer);
-        layer.forEach(Neuron::fire);
+        layer.forEach(neuron -> neuron.fire(false));
 
 
         resetNeuronFiredState();
     }
 
-    public void setAnticipatedOutput(double... outputValues) {
+    public void setAnticipatedOutput(float... outputValues) {
         Layer outputLayer = this.layers.get(this.layers.size() - 1);
 
         for (int i = 0; i < outputLayer.size(); i++) {

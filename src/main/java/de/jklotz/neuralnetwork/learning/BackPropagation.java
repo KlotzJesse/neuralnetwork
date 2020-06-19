@@ -14,9 +14,9 @@ public class BackPropagation extends Strategy {
 
         for (Layer layer : network.layers) {
             for (Neuron neuron : layer) {
-                neuron.setErrorValue(0.0);
+                neuron.setErrorValue(0);
                 for (Synapse inputConnection : neuron.inputConnections) {
-                    inputConnection.change = 0.0;
+                    inputConnection.change = 0;
                 }
             }
         }
@@ -26,16 +26,16 @@ public class BackPropagation extends Strategy {
         for (int i = 0; i < outputLayer.size(); i++) {
             Neuron outputNeuron = outputLayer.get(i);
 
-            double actualValue = outputNeuron.getValue();
-            double expectedValue = outputNeuron.getAnticipatedValue() - actualValue;
+            float actualValue = outputNeuron.getValue();
+            float expectedValue = outputNeuron.getAnticipatedValue() - actualValue;
 
             ActivationFunction activationFunction = outputLayer.activationFunction;
             if (activationFunction != null && activationFunction.isStochasticDerivative()) {
-                outputNeuron.setErrorValue(expectedValue * 0.1);
+                outputNeuron.setErrorValue(expectedValue * 0.1f);
                 continue;
             }
 
-            double b = actualValue * (1.0 - actualValue);
+            float b = actualValue * (1.0f - actualValue);
             assert activationFunction != null;
             outputNeuron.setErrorValue((expectedValue / b) * activationFunction.derivative(outputNeuron));
         }
@@ -43,7 +43,7 @@ public class BackPropagation extends Strategy {
         for (int i = network.layers.size() - 2; i >= 1; i--) {
             Layer layer = network.layers.get(i);
             for (Neuron neuron : layer) {
-                double sum = 0.0;
+                float sum = 0;
                 for (Synapse outputConnection : neuron.outputConnections) {
                     sum += outputConnection.target.getErrorValue() * outputConnection.weight;
                 }
@@ -60,9 +60,9 @@ public class BackPropagation extends Strategy {
                     continue;
                 }
                 for (Synapse outputConnection : neuron.outputConnections) {
-                    double re = learningRate * (regularization == null ? 0.0 : regularization.compute(outputConnection));
-                    double dw = learningRate * ((outputConnection.target.getErrorValue() + re) * neuron.getValue());
-                    double dm = momentum * outputConnection.change;
+                    float re = learningRate * (regularization == null ? 0 : regularization.compute(outputConnection));
+                    float dw = learningRate * ((outputConnection.target.getErrorValue() + re) * neuron.getValue());
+                    float dm = momentum * outputConnection.change;
 
                     outputConnection.weight += (dw + dm);
                     outputConnection.change = dw;
@@ -78,11 +78,11 @@ public class BackPropagation extends Strategy {
 
 
     @Override
-    public double networkError() {
+    public float networkError() {
         Layer outputLayer = network.layers.get(network.layers.size() - 1);
-        double result = 0.0;
+        float result = 0;
         for (Neuron neuron : outputLayer) {
-            double neuronError = neuron.getValue() - neuron.getAnticipatedValue();
+            float neuronError = neuron.getValue() - neuron.getAnticipatedValue();
             result += (neuronError * neuronError);
         }
         result /= outputLayer.size();

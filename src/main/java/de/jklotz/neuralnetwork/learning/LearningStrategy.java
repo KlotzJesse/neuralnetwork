@@ -6,6 +6,6 @@ public interface LearningStrategy {
 
     void learn();
 
-    double networkError();
+    float networkError();
 
 }

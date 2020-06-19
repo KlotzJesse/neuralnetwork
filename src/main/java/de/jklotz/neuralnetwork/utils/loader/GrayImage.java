@@ -18,7 +18,7 @@ public class GrayImage extends MnistImage {
             int value = rawData[i] & 0xFF;
             value = Math.min(255, value);
             value = Math.max(0, value);
-            data[i] = value / 255.0;
+            data[i] = value / 255.0f;
         }
     }
 

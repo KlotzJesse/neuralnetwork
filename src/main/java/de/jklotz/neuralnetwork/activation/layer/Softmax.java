@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Softmax implements LayerActivationFunction {
 
-    private double sum = 0.0;
+    private float sum = 0;
 
     private Lock lock = new ReentrantLock();
 
@@ -16,7 +16,7 @@ public class Softmax implements LayerActivationFunction {
     public void initialize(Layer layer) {
         lock.lock();
         try {
-            sum = 0.0;
+            sum = 0;
             layer.forEach(neuron -> sum += Math.exp(neuron.getPreActivationValue()));
         } finally {
             lock.unlock();
@@ -24,13 +24,13 @@ public class Softmax implements LayerActivationFunction {
     }
 
     @Override
-    public double activate(Neuron neuron) {
-        return Math.exp(neuron.getPreActivationValue()) / sum;
+    public float activate(Neuron neuron) {
+        return (float) (Math.exp(neuron.getPreActivationValue()) / sum);
     }
 
     @Override
-    public double derivative(Neuron neuron) {
-        return 1.0;
+    public float derivative(Neuron neuron) {
+        return 1.0f;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package de.jklotz.neuralnetwork.network;
 
+import com.google.common.util.concurrent.AtomicDouble;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +12,12 @@ public class Neuron implements Serializable {
     public final List<Synapse> inputConnections;
     public final List<Synapse> outputConnections;
     private Layer layer;
-    private double value;
-    private double anticipatedValue;
-    private double errorValue;
+    private float value;
+    private float anticipatedValue;
+    private float errorValue;
     private boolean fired;
     private boolean preComputed;
-    private double preActivationValue;
+    private float preActivationValue;
 
     public Neuron() {
         this(1, null);
@@ -25,7 +27,7 @@ public class Neuron implements Serializable {
         this(1, layer);
     }
 
-    public Neuron(double value, Layer layer) {
+    public Neuron(float value, Layer layer) {
         this.inputConnections = new ArrayList<>();
         this.outputConnections = new ArrayList<>();
         this.value = value;
@@ -33,34 +35,34 @@ public class Neuron implements Serializable {
         this.bias = new Bias();
         this.fired = false;
         this.preComputed = false;
-        this.errorValue = 0.0;
+        this.errorValue = 0;
     }
 
     public Layer getLayer() {
         return this.layer;
     }
 
-    public double getValue() {
+    public float getValue() {
         return this.value;
     }
 
-    public void setValue(double value) {
+    public void setValue(float value) {
         this.value = value;
     }
 
-    public double getErrorValue() {
+    public float getErrorValue() {
         return this.errorValue;
     }
 
-    public void setErrorValue(double errorValue) {
+    public void setErrorValue(float errorValue) {
         this.errorValue = errorValue;
     }
 
-    public double getAnticipatedValue() {
+    public float getAnticipatedValue() {
         return this.anticipatedValue;
     }
 
-    public void setAnticipatedValue(double anticipatedValue) {
+    public void setAnticipatedValue(float anticipatedValue) {
         this.anticipatedValue = anticipatedValue;
     }
 
@@ -69,36 +71,42 @@ public class Neuron implements Serializable {
         this.preComputed = fired;
     }
 
-    public double preCompute() {
+    public float preCompute(boolean parallel) {
         if (preComputed) {
             return preActivationValue;
         }
 
-        double currentValue = 0.0;
+        final AtomicDouble currentValue = new AtomicDouble(0.0);
 
-        for (Synapse synapse : inputConnections) {
-            currentValue += synapse.source.fire() * synapse.weight;
+        if (parallel)
+            inputConnections.parallelStream().forEach(synapse -> currentValue.addAndGet(synapse.source.fire(false) + synapse.weight));
+        else {
+            for (Synapse synapse : inputConnections) {
+                currentValue.addAndGet(synapse.source.fire(false) * synapse.weight);
+            }
         }
 
-        currentValue += bias.compute();
-        preActivationValue = currentValue;
+        currentValue.addAndGet(bias.compute());
+        preActivationValue = currentValue.floatValue();
+
         preComputed = true;
         return preActivationValue;
     }
 
-    public double fire() {
+    public float fire(boolean parallel) {
         int dataSize = inputConnections.size();
         if (fired || dataSize <= 0) {
             return value;
         }
 
-        preCompute();
+        preCompute(parallel);
         value = layer.activationFunction.activate(this);
+
         fired = true;
         return value;
     }
 
-    public double getPreActivationValue() {
+    public float getPreActivationValue() {
         return preActivationValue;
     }
 

@@ -7,11 +7,11 @@ import java.io.Serializable;
 
 public interface Regularization extends Serializable {
 
-    double compute(Synapse synapse);
+    float compute(Synapse synapse);
 
-    double compute(Neuron neuron);
+    float compute(Neuron neuron);
 
-    void setLambda(double lambda);
+    float getLambda();
 
-    double getLambda();
+    void setLambda(float lambda);
 }

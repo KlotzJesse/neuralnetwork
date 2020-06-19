@@ -3,18 +3,18 @@ package de.jklotz.neuralnetwork.activation.rectifier;
 public class ParametricRectifier extends Rectifier {
 
     public ParametricRectifier() {
-        this(0.01);
+        this(0.01f);
     }
 
-    public ParametricRectifier(double leakiness) {
+    public ParametricRectifier(float leakiness) {
         this.leakiness = leakiness;
     }
 
-    public void setLeakiness(double leakiness) {
-        this.leakiness = leakiness;
-    }
-
-    public double getLeakiness() {
+    public float getLeakiness() {
         return leakiness;
+    }
+
+    public void setLeakiness(float leakiness) {
+        this.leakiness = leakiness;
     }
 }

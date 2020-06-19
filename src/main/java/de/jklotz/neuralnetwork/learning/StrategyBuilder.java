@@ -5,23 +5,23 @@ import de.jklotz.neuralnetwork.regularization.Regularization;
 
 public class StrategyBuilder extends Strategy {
 
-    private Strategy strategy;
+    private final Strategy strategy;
 
     public StrategyBuilder(Strategy strategy) {
         this.strategy = strategy;
     }
 
     public StrategyBuilder neuronalNetwork(NeuronalNetwork network) {
-        strategy.network = network;
+        this.strategy.network = network;
         return this;
     }
 
-    public StrategyBuilder learningRate(double learningRate) {
+    public StrategyBuilder learningRate(float learningRate) {
         this.strategy.learningRate = learningRate;
         return this;
     }
 
-    public StrategyBuilder momentum(double momentum) {
+    public StrategyBuilder momentum(float momentum) {
         this.strategy.momentum = momentum;
         return this;
     }
@@ -41,7 +41,7 @@ public class StrategyBuilder extends Strategy {
     }
 
     //Not implemented yet.
-    public double networkError() {
+    public float networkError() {
         return 0;
     }
 }
