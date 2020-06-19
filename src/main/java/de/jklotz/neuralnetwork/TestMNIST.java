@@ -1,7 +1,5 @@
 package de.jklotz.neuralnetwork;
 
-import de.jklotz.neuralnetwork.network.Layer;
-import de.jklotz.neuralnetwork.network.Neuron;
 import de.jklotz.neuralnetwork.network.NeuronalNetwork;
 import de.jklotz.neuralnetwork.utils.Utils;
 import javafx.application.Application;
@@ -22,18 +20,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class TestMNIST extends Application {
@@ -55,7 +48,7 @@ public class TestMNIST extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         stage.setTitle("Künstliche Intelligenz | MNIST Test");
 
         Canvas canvas = new Canvas(28, 28);

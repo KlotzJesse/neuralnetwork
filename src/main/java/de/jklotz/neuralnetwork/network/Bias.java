@@ -1,7 +1,5 @@
 package de.jklotz.neuralnetwork.network;
 
-import de.jklotz.neuralnetwork.utils.Utils;
-
 import java.io.Serializable;
 import java.util.Random;
 
