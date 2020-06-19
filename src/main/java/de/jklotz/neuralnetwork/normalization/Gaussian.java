@@ -6,14 +6,14 @@ public class Gaussian implements Normalization {
     public double[] normalize(double[] data) {
         double[] result = new double[data.length];
         double sum = 0.0;
-        for (int i = 0; i < data.length; i++) {
-            sum += data[i];
+        for (double datum : data) {
+            sum += datum;
         }
         double mean = sum / (double) data.length;
         sum = 0.0;
         double delta;
-        for (int i = 0; i < data.length; i++) {
-            delta = data[i] - mean;
+        for (double datum : data) {
+            delta = datum - mean;
             sum += (delta * delta);
         }
         double standardDeviation = Math.sqrt(sum / (double) data.length);

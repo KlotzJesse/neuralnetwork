@@ -36,6 +36,7 @@ public class BackPropagation extends Strategy {
             }
 
             double b = actualValue * (1.0 - actualValue);
+            assert activationFunction != null;
             outputNeuron.setErrorValue((expectedValue / b) * activationFunction.derivative(outputNeuron));
         }
 

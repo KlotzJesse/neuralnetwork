@@ -7,9 +7,9 @@ public class MinMax implements Normalization {
         double[] result = new double[data.length];
         double min = Double.MAX_VALUE;
         double max = Double.MIN_VALUE;
-        for (int i = 0; i < data.length; i++) {
-            min = Math.min(min, data[i]);
-            max = Math.max(max, data[i]);
+        for (double datum : data) {
+            min = Math.min(min, datum);
+            max = Math.max(max, datum);
         }
         for (int i = 0; i < data.length; i++) {
             result[i] = (data[i] - min) / (max - min);

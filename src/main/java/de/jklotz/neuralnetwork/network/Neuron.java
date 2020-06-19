@@ -74,12 +74,11 @@ public class Neuron implements Serializable {
             return preActivationValue;
         }
 
-         double currentValue = 0.0;
+        double currentValue = 0.0;
 
-            for (int i = 0; i < inputConnections.size(); i++) {
-                Synapse synapse = inputConnections.get(i);
-                currentValue += synapse.source.fire() * synapse.weight;
-            }
+        for (Synapse synapse : inputConnections) {
+            currentValue += synapse.source.fire() * synapse.weight;
+        }
 
         currentValue += bias.compute();
         preActivationValue = currentValue;
