@@ -2,9 +2,8 @@ package de.jklotz.neuralnetwork.learning;
 
 import de.jklotz.neuralnetwork.network.NeuronalNetwork;
 import de.jklotz.neuralnetwork.regularization.Regularization;
-import javafx.util.Builder;
 
-public class StrategyBuilder implements Builder<Strategy> {
+public class StrategyBuilder extends Strategy {
 
     private Strategy strategy;
 
@@ -32,8 +31,17 @@ public class StrategyBuilder implements Builder<Strategy> {
         return this;
     }
 
-    @Override
     public Strategy build() {
         return this.strategy;
+    }
+
+    //Not implemented yet.
+    public void learn() {
+
+    }
+
+    //Not implemented yet.
+    public double networkError() {
+        return 0;
     }
 }

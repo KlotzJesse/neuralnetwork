@@ -2,9 +2,8 @@ package de.jklotz.neuralnetwork.network;
 
 import de.jklotz.neuralnetwork.activation.ActivationFunction;
 import de.jklotz.neuralnetwork.initializer.Initializer;
-import javafx.util.Builder;
 
-public class NeuronalNetworkBuilder implements Builder<NeuronalNetwork> {
+public class NeuronalNetworkBuilder extends NeuronalNetwork {
 
     private NeuronalNetwork network;
 
@@ -31,7 +30,6 @@ public class NeuronalNetworkBuilder implements Builder<NeuronalNetwork> {
         return this;
     }
 
-    @Override
     public NeuronalNetwork build() {
         this.network.connectLayers();
         this.network.initializer.initialize(this.network);
