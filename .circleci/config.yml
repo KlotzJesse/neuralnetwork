@@ -34,7 +34,7 @@ jobs:
       - run: mvn clean package
 
       # build and push docker image to docker hub
-      - run: mvn clean compile jib:build -Dimage=jessek/neuralnetwork:$CIRCLE_BUILD_NUM
+      - run: mvn clean compile jib:build -Dimage=jesseklotz2306/neuralnetwork:$CIRCLE_BUILD_NUM
 
       # store raw contents of src code
       - store_artifacts:
