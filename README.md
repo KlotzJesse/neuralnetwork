@@ -1,6 +1,6 @@
 
 
-<p align="center"><img src="docs/images/logo/neuralnetwork-logo-color.png?raw=true" alt="neuralnetwork logo"></p>
+<p align="center"><img src="docs/images/logo/neuralnetwork-logo-color-trim.png?raw=true" alt="neuralnetwork logo"></p>
 
 <h3 align="center">
 	neuralnetwork
