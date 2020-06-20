@@ -24,6 +24,29 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/KlotzJesse/neuralnetwork?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/KlotzJesse/neuralnetwork?style=flat-square)
 
+## Run MNIST-Training example network
+
+### Prerequisities
+
+
+In order to run this container you'll need docker installed.
+
+* [Windows](https://docs.docker.com/windows/started)
+* [OS X](https://docs.docker.com/mac/started/)
+* [Linux](https://docs.docker.com/linux/started/)
+
+### Install
+
+Pull `jesseklotz2306/neuralnetwork` from the Docker repository:
+
+    docker pull jesseklotz2306/neuralnetwork
+
+### Run
+
+Run the image:
+
+    docker run jesseklotz2306/neuralnetwork
+
 ## Usage
 
 ### Setup
