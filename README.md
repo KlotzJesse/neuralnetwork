@@ -28,14 +28,14 @@
 
 ### Setup
 
-Simple two hidden layer configuration of a feed forward network. Using the Swish activation function and an exponential rectifier. Outputs a probability distribution in relation to the plausibility of the input value.
+Two hidden layer configuration (add as many as you want). Using the Swish activation function and an exponential rectifier as activation function. Outputs a probability distribution in relation to the plausibility of the input value.
 
 Input Neurons: 720, 
 Hidden Layer 1: 28, 
 Hidden Layer 2: 14, 
 Output Neurons: 10
 
-Ever neuron is by default densely connected to each other and initialized using the Xavier Initializer.
+Every neuron is by default densely connected to each other (synapses) and initialized using the Xavier Initializer.
 
 ```java
 NeuronalNetwork neuralNetwork = new NeuronalNetworkBuilder()
