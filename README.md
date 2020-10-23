@@ -109,3 +109,6 @@ backPropagation.learn();
 # License
 
 <a href="https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)" target="_blank">![GitHub](https://img.shields.io/github/license/KlotzJesse/neuralnetwork?style=for-the-badge)</a>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIxMTI5NjMxODVdfQ==
+-->
