@@ -3,7 +3,7 @@
 <p align="center"><img src="docs/images/logo/neuralnetwork-logo-color-trim.png?raw=true" alt="neuralnetwork logo"></p>
 
 <h3 align="center">
-	neuralnetwork
+	neuralnetwork 
 </h3>
 
 <p align="center">
@@ -110,5 +110,5 @@ backPropagation.learn();
 
 <a href="https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)" target="_blank">![GitHub](https://img.shields.io/github/license/KlotzJesse/neuralnetwork?style=for-the-badge)</a>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMTI5NjMxODVdfQ==
+eyJoaXN0b3J5IjpbLTIwNjIzODcwMywtMjExMjk2MzE4NV19
 -->
