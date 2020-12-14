@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  A simple, unfinished java implementation of a rudimentary artificial intelligence framework, trained using the MNIST data set for the classification of numbers.
+  A simple, unfinished java implementation of a rudimentary artificial intelligence framework written in java, trained using the MNIST data set for the classification of numbers.
 </p>
 
 ## What is Artifical Intelligence
